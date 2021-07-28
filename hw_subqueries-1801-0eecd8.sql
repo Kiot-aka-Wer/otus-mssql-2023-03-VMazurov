@@ -45,21 +45,17 @@ where p.IsSalesPerson = 1
 Вывести: ИД товара, наименование товара, цена.
 */
 
---Надеюсь правильно понял задание, что имелась ввиду цена в заказе
-	--select distinct
-	--	il.Description
-	--	--,il.UnitPrice
-	--	,min(il.UnitPrice)
-	--from sales.InvoiceLines as il
-	--order by il.Description, il.UnitPrice asc
+select si.StockItemID, si.StockItemName, si.UnitPrice
+from Warehouse.StockItems as si
+where si.UnitPrice = (select min(UnitPrice) from Warehouse.StockItems)
 
---select distinct
---	ac.CityID
---	,ac.CityName
---	,p.FullName
---from sales.Invoices as i
---	inner join sales.InvoiceLines as il on il.InvoiceID = i.InvoiceID
---	inner join cte as c on c.Description = il.Description
+;with cte as (
+	select min(UnitPrice) as UnitPrice
+	from Warehouse.StockItems
+)
+select si.StockItemID, si.StockItemName, si.UnitPrice
+from Warehouse.StockItems as si
+	inner join cte as c on c.UnitPrice = si.UnitPrice
 
 /*
 3. Выберите информацию по клиентам, которые перевели компании пять максимальных платежей 
