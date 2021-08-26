@@ -16,4 +16,4 @@ AS
 EXTERNAL NAME SplitStringSharp.UserDefinedFunctions.SplitString
 
 select *
-from dbo.SplitStringCLR('sfdgsg;fshjgdj;aertysghd;vbxnb', ';')
+from dbo.SplitStringCLR('sfdgsg;fshjgdj;aertysghd;vbxnb', ';')	
